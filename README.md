@@ -30,8 +30,8 @@ Sitecore Syndicate
 
 ## Pre-requisites and Dependencies
 
-- A working Sitecore 10.3 instance
-- Sitecpore Powershell Extension
+- A working Sitecore 10.3 or XM Cloud instance
+- Sitecore Powershell Extension
 - OpenAI account 
 - OpenAI auth token
 - Generating 100 large images will cost you two dollar, so budget accordingly
@@ -39,9 +39,9 @@ Sitecore Syndicate
 
 ## Installation instructions
 
-1. Use the Sitecore Installation wizard to install the [package](#link-to-package)
-2. ...
-3. ...
+1. Use the Sitecore Installation wizard to install the [package](SitecoreSyndicate/Package/Image%20Generation%20Powershell%20Script.zip)
+2. This will create a content menu item which will add 'Generate Image' option to your folder
+3. Don't be afraid to click it
 3. profit
 
 ## Usage instructions
