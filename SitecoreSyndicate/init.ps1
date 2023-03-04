@@ -1,6 +1,3 @@
-[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingPlainTextForPassword', '', Justification='Value will be stored unencrypted in .env,
-# and used only for transient local development environments', Scope='Function')]
-
 [CmdletBinding(DefaultParameterSetName = "no-arguments")]
 Param (
     [Parameter(HelpMessage = "Enables initialization of values in the .env file, which may be placed in source control.",
@@ -17,20 +14,10 @@ Param (
     [Parameter(Mandatory = $true,
         HelpMessage = "Sets the sitecore\\admin password for this environment via environment variable.",
         ParameterSetName = "env-init")]
-    [string]$AdminPassword,
-    [Parameter(Mandatory = $false,
-        HelpMessage = "Sets the instance topology",
-        ParameterSetName = "env-init")]
-    [ValidateSet("xp0","xp1","xm1")]
-    [string]$Topology = "xp0"
+    [string]$AdminPassword
 )
 
-$topologyArray = "xp0", "xp1", "xm1";
-if (!$topologyArray.Contains($Topology)) {
-  throw "The topology $Topology is not valid. Please choose one from existed $($topologyArray -join ', ')"
-}
 $ErrorActionPreference = "Stop";
-$workinDirectoryPath = ".\run\sitecore-$Topology"
 
 if ($InitEnv) {
     if (-not $LicenseXmlPath.EndsWith("license.xml")) {
@@ -54,6 +41,7 @@ Import-Module PowerShellGet
 $SitecoreGallery = Get-PSRepository | Where-Object { $_.SourceLocation -eq "https://sitecore.myget.org/F/sc-powershell/api/v2" }
 if (-not $SitecoreGallery) {
     Write-Host "Adding Sitecore PowerShell Gallery..." -ForegroundColor Green
+    Unregister-PSRepository -Name SitecoreGallery -ErrorAction SilentlyContinue
     Register-PSRepository -Name SitecoreGallery -SourceLocation https://sitecore.myget.org/F/sc-powershell/api/v2 -InstallationPolicy Trusted
     $SitecoreGallery = Get-PSRepository -Name SitecoreGallery
 }
@@ -89,7 +77,8 @@ try {
     }
     Write-Host "Generating Traefik TLS certificate..." -ForegroundColor Green
     & $mkcert -install
-    & $mkcert "*.sitecoresyndicate.localhost"
+    & $mkcert "*.sxastarter.localhost"
+    & $mkcert "xmcloudcm.localhost"
 
     # stash CAROOT path for messaging at the end of the script
     $caRoot = "$(& $mkcert -CAROOT)\rootCA.pem"
@@ -108,20 +97,33 @@ finally {
 
 Write-Host "Adding Windows hosts file entries..." -ForegroundColor Green
 
-Add-HostsEntry "cm.sitecoresyndicate.localhost"
-if ($Topology -ne "xp0") {
-  Add-HostsEntry "cd.sitecoresyndicate.localhost"
-}
-Add-HostsEntry "id.sitecoresyndicate.localhost"
-Add-HostsEntry "www.sitecoresyndicate.localhost"
+Add-HostsEntry "xmcloudcm.localhost"
+Add-HostsEntry "www.sxastarter.localhost"
 
+###############################
+# Generate scjssconfig
+###############################
+
+Set-EnvFileVariable "JSS_DEPLOYMENT_SECRET_xmcloudpreview" -Value $xmCloudBuild.renderingHosts.xmcloudpreview.jssDeploymentSecret
+
+################################
+# Generate Sitecore Api Key
+################################
+
+$sitecoreApiKey = (New-Guid).Guid
+Set-EnvFileVariable "SITECORE_API_KEY_xmcloudpreview" -Value $sitecoreApiKey
+
+################################
+# Generate JSS_EDITING_SECRET
+################################
+$jssEditingSecret = Get-SitecoreRandomString 64 -DisallowSpecial
+Set-EnvFileVariable "JSS_EDITING_SECRET" -Value $jssEditingSecret
 
 ###############################
 # Populate the environment file
 ###############################
 
 if ($InitEnv) {
-    Push-Location $workinDirectoryPath
 
     Write-Host "Populating required .env file values..." -ForegroundColor Green
 
@@ -129,18 +131,10 @@ if ($InitEnv) {
     Set-EnvFileVariable "HOST_LICENSE_FOLDER" -Value $LicenseXmlPath
 
     # CM_HOST
-    Set-EnvFileVariable "CM_HOST" -Value "cm.sitecoresyndicate.localhost"
-
-    if ($Topology -ne "xp0") {
-      # CD_HOST
-      Set-EnvFileVariable "CD_HOST" -Value "cd.sitecoresyndicate.localhost"
-    }
-
-    # ID_HOST
-    Set-EnvFileVariable "ID_HOST" -Value "id.sitecoresyndicate.localhost"
+    Set-EnvFileVariable "CM_HOST" -Value "xmcloudcm.localhost"
 
     # RENDERING_HOST
-    Set-EnvFileVariable "RENDERING_HOST" -Value "www.sitecoresyndicate.localhost"
+    Set-EnvFileVariable "RENDERING_HOST" -Value "www.sxastarter.localhost"
 
     # REPORTING_API_KEY = random 64-128 chars
     Set-EnvFileVariable "REPORTING_API_KEY" -Value (Get-SitecoreRandomString 128 -DisallowSpecial)
@@ -150,16 +144,6 @@ if ($InitEnv) {
 
     # MEDIA_REQUEST_PROTECTION_SHARED_SECRET
     Set-EnvFileVariable "MEDIA_REQUEST_PROTECTION_SHARED_SECRET" -Value (Get-SitecoreRandomString 64)
-
-    # SITECORE_IDSECRET = random 64 chars
-    Set-EnvFileVariable "SITECORE_IDSECRET" -Value (Get-SitecoreRandomString 64 -DisallowSpecial)
-
-    # SITECORE_ID_CERTIFICATE
-    $idCertPassword = Get-SitecoreRandomString 12 -DisallowSpecial
-    Set-EnvFileVariable "SITECORE_ID_CERTIFICATE" -Value (Get-SitecoreCertificateAsBase64String -DnsName "localhost" -Password (ConvertTo-SecureString -String $idCertPassword -Force -AsPlainText) -KeyLength 2048)
-
-    # SITECORE_ID_CERTIFICATE_PASSWORD
-    Set-EnvFileVariable "SITECORE_ID_CERTIFICATE_PASSWORD" -Value $idCertPassword
 
     # SQL_SA_PASSWORD
     # Need to ensure it meets SQL complexity requirements
@@ -173,26 +157,25 @@ if ($InitEnv) {
 
     # SITECORE_ADMIN_PASSWORD
     Set-EnvFileVariable "SITECORE_ADMIN_PASSWORD" -Value $AdminPassword
-
-    # JSS_EDITING_SECRET
-    # Populate it for the Next.js local environment as well
-    $jssEditingSecret = Get-SitecoreRandomString 64 -DisallowSpecial
-    Set-EnvFileVariable "JSS_EDITING_SECRET" -Value $jssEditingSecret
-
-    # Set the instance topology
-    Set-EnvFileVariable "TOPOLOGY" -Value $Topology
-    Write-Host "The instance topology: $Topology" -ForegroundColor Green
-
-    Pop-Location
 }
 
 Write-Host "Done!" -ForegroundColor Green
 
-Write-Host
-Write-Host ("#"*75) -ForegroundColor Cyan
-Write-Host "To avoid HTTPS errors, set the NODE_EXTRA_CA_CERTS environment variable" -ForegroundColor Cyan
-Write-Host "using the following commmand:" -ForegroundColor Cyan
-Write-Host "setx NODE_EXTRA_CA_CERTS $caRoot"
-Write-Host
-Write-Host "You will need to restart your terminal or VS Code for it to take effect." -ForegroundColor Cyan
-Write-Host ("#"*75) -ForegroundColor Cyan
+Push-Location docker\traefik\certs
+try
+{
+    Write-Host
+    Write-Host ("#"*75) -ForegroundColor Cyan
+    Write-Host "To avoid HTTPS errors, set the NODE_EXTRA_CA_CERTS environment variable" -ForegroundColor Cyan
+    Write-Host "using the following commmand:" -ForegroundColor Cyan
+    Write-Host "setx NODE_EXTRA_CA_CERTS $caRoot"
+    Write-Host
+    Write-Host "You will need to restart your terminal or VS Code for it to take effect." -ForegroundColor Cyan
+    Write-Host ("#"*75) -ForegroundColor Cyan
+}
+catch {
+    Write-Error "An error occurred while attempting to generate TLS certificate: $_"
+}
+finally {
+    Pop-Location
+}
