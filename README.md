@@ -25,7 +25,7 @@ Sitecore Syndicate
 
 ## Video link
 
-⟹ [Sitecore Syndicate Hackathon submission](https://www.youtube.com/watch?v=rQZheQHKGsc)
+⟹ [Sitecore Syndicate Hackathon submission](https://www.youtube.com/watch?v=cxpHcL_cToc)
 
 
 ## Pre-requisites and Dependencies
