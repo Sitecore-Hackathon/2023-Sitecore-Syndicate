@@ -2,6 +2,8 @@
 
 ## Team name
 Sitecore Syndicate
+<!-- ![Sitecore Syndicate Team](docs/images/syndicate-team.png?raw=true "Sitecore Syndicate Team") -->
+<img src="docs/images/syndicate-team.png" alt= 'Sitecore Syndicate Team' width="300" >
 
 ## Category
 Best Enhancement to XM Cloud
