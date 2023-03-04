@@ -1,0 +1,16 @@
+{
+    "namespace": "SitecoreSyndicate-Content",
+    "references": [ "SitecoreSyndicate" ],
+    "items": {
+        "includes": [
+            {
+                "name": "content",
+                "path": "/sitecore/content/SitecoreSyndicate"
+            },
+            {
+                "name": "media",
+                "path": "/sitecore/media library/sitecoresyndicate"
+            }
+        ]
+    }
+}

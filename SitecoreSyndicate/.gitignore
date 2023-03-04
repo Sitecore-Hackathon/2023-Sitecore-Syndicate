@@ -1,4 +1,4 @@
-# may contain OAuth secrets, do not commit
+﻿# may contain OAuth secrets, do not commit
 .sitecore/user.json
 
 # NuGet cache for Sitecore CLI
@@ -10,14 +10,6 @@
 # Don't commit packages
 *.itempackage
 *.sicpackage
-
-
-# User-specific files
-*.rsuser
-*.suo
-*.user
-*.userosscache
-*.sln.docstates
 
 #Ignore thumbnails created by Windows
 Thumbs.db
@@ -50,5 +42,3 @@ _ReSharper*/
 .vs/
 #Nuget packages folder
 packages/
-
-.env

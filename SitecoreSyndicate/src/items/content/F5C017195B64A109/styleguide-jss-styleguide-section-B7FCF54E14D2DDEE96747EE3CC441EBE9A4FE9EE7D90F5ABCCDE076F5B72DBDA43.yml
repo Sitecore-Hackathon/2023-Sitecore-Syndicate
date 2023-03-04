@@ -1,0 +1,49 @@
+﻿---
+ID: "26769abc-8d28-5d9d-b69c-5d5eb6685f0c"
+Parent: "391d7127-38c8-5539-ad83-881310f9efaa"
+Template: "4787a99b-db33-5550-8ab9-6a7216d55ad4"
+Path: "/sitecore/content/SitecoreSyndicate/home/styleguide/Page Components/styleguide-jss-styleguide-section-B7FCF54E14D2DDEE96747EE3CC441EBE9A4FE9EE7D90F5ABCCDE076F5B72DBDA43"
+Languages:
+- Language: en
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: "Styleguide-FieldUsage-Link-9"
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20230304T020104Z
+    - ID: "2eb994b8-bc34-5870-b508-c1896004402d"
+      Hint: heading
+      Value: General Link
+    - ID: "6328f5f9-ec41-5f0b-91cf-13412d4fe095"
+      Hint: description
+      Value: <p>A <em>General Link</em> is a field that represents an <code>&lt;a&gt;</code> tag.</p>
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "f5c63f79-a719-4517-bbfe-a4a2542a9fca"
+    - ID: "a46d8107-9512-5709-8a06-3845d515e97a"
+      Hint: paramsLink
+      Value: |
+        <link class="font-weight-bold" target="_blank" title="&lt;a&gt; title attribute" linktype="external" text="Sitecore Dev Site" url="https://dev.sitecore.net" />
+    - ID: "a81081f6-6c0e-58d6-b5ce-b2dc852ec581"
+      Hint: internalLink
+      Value: |
+        <link id="{E0E6D07A-2F0B-5E89-AF1D-416B814A83A4}" linktype="internal" />
+    - ID: "a8cbb15b-3159-5e05-9fa6-b67cf7e841ba"
+      Hint: emailLink
+      Value: |
+        <link linktype="mailto" text="Send an Email" url="mailto:foo@bar.com" />
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\JssImport
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20230304T020104Z
+    - ID: "fcf2a130-df96-5bec-ba2d-ae73874cd779"
+      Hint: externalLink
+      Value: |
+        <link linktype="external" text="Link to Sitecore" url="https://www.sitecore.com" />

@@ -1,0 +1,24 @@
+{
+    "namespace": "SitecoreSyndicate",
+    "references": [ "InitItems" ],
+    "items": {
+        "includes": [
+            {
+                "name": "layouts",
+                "path": "/sitecore/layout/Layouts/Project/sitecoresyndicate"
+            },
+            {
+                "name": "placeholders",
+                "path": "/sitecore/layout/Placeholder Settings/Project/sitecoresyndicate"
+            },
+            {
+                "name": "renderings",
+                "path": "/sitecore/layout/Renderings/Project/sitecoresyndicate"
+            },
+            {
+                "name": "templates",
+                "path": "/sitecore/templates/Project/sitecoresyndicate"
+            }
+        ]
+    }
+}

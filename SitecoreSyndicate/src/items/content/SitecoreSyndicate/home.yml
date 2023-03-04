@@ -1,0 +1,43 @@
+﻿---
+ID: "e0e6d07a-2f0b-5e89-af1d-416b814a83a4"
+Parent: "e7fa4e3d-4ab4-5322-b85d-b257e2238642"
+Template: "c173563f-2131-5df8-ab8f-08d9c001a0df"
+Path: /sitecore/content/SitecoreSyndicate/home
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "04bf00db-f5fb-41f7-8ab7-22408372a981"
+      Hint: __Final Renderings
+      Value: |
+        <r xmlns:p="p" xmlns:s="s"
+          p:p="1">
+          <d
+            id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+            <r
+              uid="{2C4A53CC-9DA8-5F51-9D79-6EE2FC671B2D}"
+              p:after="*[1=2]"
+              s:rname="ContentBlock"
+              s:ds="{CAD41607-D407-5331-9F95-F865A308B2E8}"
+              s:id="{738001F2-A3FA-51A4-98A8-D8C926971BB2}"
+              s:par=""
+              s:ph="/jss-main" />
+          </d>
+        </r>
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20230304T020100Z
+    - ID: "63d62f1a-15d3-58e9-8fa9-81b9077558b2"
+      Hint: pageTitle
+      Value: Welcome to Sitecore JSS
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "e4684286-283f-4bdc-8e4f-f5cd4d212797"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\JssImport
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20230304T020101Z
