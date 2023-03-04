@@ -96,7 +96,7 @@ function Get-Image-Urls
     )
     
     $url = "https://api.openai.com/v1/images/generations"
-    $token = "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"
+    $token = "<Your api key>"
     
     $headers = @{
         "Authorization" = "Bearer $token"

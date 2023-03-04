@@ -6,10 +6,10 @@ Sitecore Syndicate
 <img src="docs/images/syndicate-team.png" alt= 'Sitecore Syndicate Team' width="300" >
 
 ## Category
-Best Enhancement to XM Cloud
+ 
+  - Best Enhancement to XM Cloud
 
 ## Description
-⟹ Write a clear description of your hackathon entry.  
 
   - One sunny thirsday afternoon you just got back from the coffee shop and get a call from a very rich multi national client who wants a demo of sitecore for their art gallery. They want to digitize, showcase, personalize, and sell art online. They are ready to spend all the money they made from selling NFTs over the last couple of years. AND the kicker is they want a demo tomorrow. 
   - Good thing you have some docker knowledge but speaking from experience, that's not a one day task. So you will always head to Sitecore Demo Portal. 
@@ -28,7 +28,6 @@ Best Enhancement to XM Cloud
 ⟹ [Replace this Video link](#video-link)
 
 
-
 ## Pre-requisites and Dependencies
 
 - A working Sitecore 10.3 instance
@@ -44,11 +43,6 @@ Best Enhancement to XM Cloud
 2. ...
 3. ...
 3. profit
-
-<!-- ### Configuration
-⟹ If there are any custom configuration that has to be set manually then remember to add all details here.
-
-_Remove this subsection if your entry does not require any configuration that is not fully covered in the installation instructions already_ -->
 
 ## Usage instructions
 ⟹ Provide documentation about your module, how do the users use your module, where are things located, what do the icons mean, are there any secret shortcuts etc.
