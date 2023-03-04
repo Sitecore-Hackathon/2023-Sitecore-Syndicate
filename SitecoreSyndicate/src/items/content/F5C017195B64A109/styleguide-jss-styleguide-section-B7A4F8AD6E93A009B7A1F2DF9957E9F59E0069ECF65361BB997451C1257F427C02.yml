@@ -1,0 +1,42 @@
+﻿---
+ID: "2f61eb41-b46a-5a38-9431-80b7fcee1eee"
+Parent: "391d7127-38c8-5539-ad83-881310f9efaa"
+Template: "188d3392-e3e1-5117-bf0c-9ab2083c396e"
+Path: "/sitecore/content/SitecoreSyndicate/home/styleguide/Page Components/styleguide-jss-styleguide-section-B7A4F8AD6E93A009B7A1F2DF9957E9F59E0069ECF65361BB997451C1257F427C02"
+Languages:
+- Language: en
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: "Styleguide-FieldUsage-Date-8"
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "2209a4e7-a126-5006-98ff-b2ad760e345c"
+      Hint: date
+      Value: 20120504T000000Z
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20230304T020104Z
+    - ID: "2eb994b8-bc34-5870-b508-c1896004402d"
+      Hint: heading
+      Value: Date
+    - ID: "40b835b3-1aed-5f72-b1ae-fcd891c0c1b8"
+      Hint: dateTime
+      Value: 20180314T150000Z
+    - ID: "6328f5f9-ec41-5f0b-91cf-13412d4fe095"
+      Hint: description
+      Value: |
+        <p><small>Both <code>Date</code> and <code>DateTime</code> field types are available. Choosing <code>DateTime</code> will make Sitecore show editing UI for time; both types store complete date and time values internally. Date values in JSS are formatted using <a href="https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations" target="_blank">ISO 8601 formatted strings</a>, for example <code>2012-04-23T18:25:43.511Z</code>.</small></p>
+        <div class="alert alert-warning"><small>Note: this is a JavaScript date format (e.g. <code>new Date().toISOString()</code>), and is different from how Sitecore stores date field values internally. Sitecore-formatted dates will not work.</small></div>
+        
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "f9f5a193-5d8b-4c78-9f86-c55221df66c9"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\JssImport
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20230304T020104Z
