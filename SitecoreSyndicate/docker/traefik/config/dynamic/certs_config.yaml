@@ -1,4 +1,0 @@
-tls:
-  certificates:
-    - certFile: C:\etc\traefik\certs\_wildcard.sitecoresyndicate.localhost.pem
-      keyFile: C:\etc\traefik\certs\_wildcard.sitecoresyndicate.localhost-key.pem
